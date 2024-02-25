@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 
+import os  # Import the os module
 from flask import Flask
 from models import storage
 from api.v1.views import app_views
