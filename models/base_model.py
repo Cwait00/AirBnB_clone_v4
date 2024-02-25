@@ -1,13 +1,14 @@
 #!/usr/bin/python3
 """This is the base model class for AirBnB"""
 from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import Column, Integer, String, DateTime
 import uuid
 import models
 from datetime import datetime
-from sqlalchemy import Column, Integer, String, DateTime
 
 
 Base = declarative_base()
+metadata = Base.metadata
 
 
 class BaseModel:
