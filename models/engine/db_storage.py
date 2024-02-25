@@ -12,7 +12,6 @@ from models.place import Place
 from models.review import Review
 from models.amenity import Amenity
 
-
 class DBStorage:
     """ create tables in environmental"""
     __engine = None
@@ -78,4 +77,3 @@ class DBStorage:
         """Close the current session and create a new one"""
         self.__session.remove()
         self.reload()  # Create a new session after closing
-
