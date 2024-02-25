@@ -32,9 +32,9 @@ class FileStorage:
             for key in dictionary:
                 partition = key.replace('.', ' ')
                 partition = shlex.split(partition)
-                if (partition[0] == cls.__name__):
+                if partition[0] == cls.__name__:
                     dic[key] = self.__objects[key]
-            return (dic)
+            return dic
         else:
             return self.__objects
 
@@ -57,15 +57,23 @@ class FileStorage:
             json.dump(my_dict, f)
 
     def reload(self):
-        """serialize the file path to JSON file path
-        """
+        """Deserialize the JSON file to objects."""
         try:
-            with open(self.__file_path, 'r', encoding="UTF-8") as f:
-                for key, value in (json.load(f)).items():
-                    value = eval(value["__class__"])(**value)
-                    self.__objects[key] = value
+            with open(self.__file_path, 'r', encoding="UTF-8") as file:
+                json_data = json.load(file)
+                for key, obj_dict in json_data.items():
+                    class_name = obj_dict.get('__class__')
+                    if class_name:
+                        obj_class = globals().get(class_name)
+                        if obj_class:
+                            obj_instance = obj_class(**obj_dict)
+                            self.__objects[key] = obj_instance
+                        else:
+                            print(f"Warning: Unknown class '{class_name}' encountered.")
+                    else:
+                        print(f"Warning: '__class__' key missing for object with key '{key}'.")
         except FileNotFoundError:
-            pass
+            print("File not found. Unable to reload data.")
 
     def delete(self, obj=None):
         """ delete an existing element
