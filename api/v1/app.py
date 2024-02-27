@@ -1,16 +1,30 @@
 #!/usr/bin/python3
-"""This module contains the Flask application for the API."""
+"""This module contains the Flask application for the API.
+
+This Flask application serves as the backend for the API, providing various
+endpoints for interacting with the application data. It includes routes for
+managing resources such as users, items, and orders.
+
+Usage:
+    To run the application, execute this script directly:
+        $ python3 app.py
+
+Configuration:
+    The application can be configured using the following environment variables:
+        - HBNB_API_HOST: Host IP address (default: '0.0.0.0')
+        - HBNB_API_PORT: Port number (default: 5000)
+
+"""
 
 import os
-import sys
+import sys  # Importing sys module
 from flask import Flask, jsonify
+from flask_cors import CORS
 from api.v1.views import app_views
 from models import storage
-from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-
 app.register_blueprint(app_views)
 
 @app.teardown_appcontext
