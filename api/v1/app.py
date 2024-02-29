@@ -1,66 +1,42 @@
 #!/usr/bin/python3
-"""This module contains the Flask application for the API.
+'''
+Createw Flask app; and register the blueprint app_views to Flask instance app.
+'''
 
-This Flask application serves as the backend for the API, providing various
-endpoints for interacting with the application data. It includes routes for
-managing resources such as users, items, and orders.
-
-Usage:
-    To run the application, execute this script directly:
-        $ python3 app.py
-
-Configuration:
-    The application can be configured using the following environment
-    variables:
-        - HBNB_API_HOST: Host IP address (default: '0.0.0.0')
-        - HBNB_API_PORT: Port number (default: 5000)
-"""
-
-import os
-from flask import Flask, jsonify, request
+from os import getenv
+from flask import Flask, jsonify
 from flask_cors import CORS
-from api.v1.views import app_views
 from models import storage
+from api.v1.views import app_views
 
 app = Flask(__name__)
-CORS(app)
+
+# enable CORS and allow for origins:
+CORS(app, resources={r'/api/v1/*': {'origins': '0.0.0.0'}})
+
 app.register_blueprint(app_views)
+app.url_map.strict_slashes = False
 
 
 @app.teardown_appcontext
-def teardown_appcontext(exception):
-    """Teardown app context and close the database connection."""
+def teardown_engine(exception):
+    '''
+    Removes the current SQLAlchemy Session object after each request.
+    '''
     storage.close()
 
 
-# Handler for 404 errors
+# Error handlers for expected app behavior:
 @app.errorhandler(404)
-def handle_not_found_error(e):
-    """Handle 404 errors by returning a JSON-formatted response."""
-    response = jsonify(error="Not found")
-    response.status_code = 404
-    return response
+def not_found(error):
+    '''
+    Return errmsg `Not Found`.
+    '''
+    response = {'error': 'Not found'}
+    return jsonify(response), 404
 
 
-# Route for /api/v1/status
-@app.route('/api/v1/status')
-def get_status():
-    """Route to return status."""
-    return jsonify({"status": "OK"}), 200
-
-
-# Route for shutting down the server
-@app.route('/shutdown', methods=['POST'])
-def shutdown():
-    """Route to shutdown the server."""
-    shutdown_server = request.environ.get('werkzeug.server.shutdown')
-    if shutdown_server:
-        shutdown_server()
-        return 'Server shutting down...'
-    return 'Unable to shutdown server.'
-
-
-if __name__ == "__main__":
-    host = os.getenv('HBNB_API_HOST', '0.0.0.0')
-    port = int(os.getenv('HBNB_API_PORT', 5000))
-    app.run(host=host, port=port, threaded=True)
+if __name__ == '__main__':
+    HOST = getenv('HBNB_API_HOST', '0.0.0.0')
+    PORT = int(getenv('HBNB_API_PORT', 5000))
+    app.run(host=HOST, port=PORT, threaded=True)
