@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HBnB</title>
+    <link rel="stylesheet" type="text/css" href="../static/styles/4-common.css?{{ cache_id }}">
+    <link rel="stylesheet" type="text/css" href="../static/styles/3-header.css?{{ cache_id }}">
+</head>
+<body>
+    <header>
+        <!-- Your header content here -->
+        <h1>Welcome to HBnB</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Your main content here -->
+        <section class="filters">
+            <!-- Filter options here -->
+            <h2>Filter Options</h2>
+            <label for="location">Location:</label>
+            <select id="location">
+                <option value="new_york">New York</option>
+                <option value="los_angeles">Los Angeles</option>
+                <!-- Add more location options as needed -->
+            </select>
+            <!-- Add more filter options as needed -->
+            <button>Apply Filters</button>
+        </section>
+
+        <section class="places">
+            <!-- Place listings here -->
+            <article>
+                <h2>Cozy Apartment in New York</h2>
+                <p>$100 per night</p>
+                <!-- Add more details about the place -->
+            </article>
+            <!-- Add more place listings as needed -->
+        </section>
+    </main>
+
+    <footer>
+        <!-- Your footer content here -->
+        <p>&copy; 2024 HBnB. All rights reserved.</p>
+    </footer>
+</body>
+</html>
