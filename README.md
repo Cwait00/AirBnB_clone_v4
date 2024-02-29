@@ -1,27 +1,14 @@
-# AirBnB Clone Version 3
-
 ## About
-This project is a clone of the popular vacation rental online marketplace, Airbnb.
-It aims to provide similar functionality for users to search, book, and manage accommodations.
+This is the v4 of the AirBnB Clone project, a collaborative effort to build
+a web application inspired by Airbnb's website. The project aims to create
+a simplified version of the Airbnb platform, allowing users to search
+for and book accommodations.i
 
 ## Contributors
 - [Cwaita Nobongoza](https://github.com/cwait00) - Author
-
-## New Contribution
-In this version (v3) of the AirBnB clone, several new features and improvements have been added, including:
-- Improved search functionality
-- Enhanced user interface
-- Integration with external APIs for location data
-- Bug fixes and performance optimizations
-
-Feel free to explore the codebase and contribute to making it even better!
-
-## Installation
-To run the AirBnB clone locally, follow these steps:
-1. Clone the repository.
-2. Install dependencies using `pip install -r requirements.txt`.
-3. Run the application using `python app.py`.
-
-## Feedback
-If you have any feedback, suggestions, or bug reports, please don't hesitate to open an issue or 
-submit a pull request. Your contributions are highly appreciated!
+i
+## New Contributions
+In this version of the project, the following updates and contributions have been made:
+- Forked the codebase and updated the repository name to AirBnB-clone-v4
+- Added myself as an author of the project
+- Updated the README.md file with new information and improvements
