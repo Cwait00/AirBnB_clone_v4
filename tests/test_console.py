@@ -6,6 +6,7 @@ import io
 import sys
 
 class TestConsole(unittest.TestCase):
+
     def setUp(self):
         self.console = HBNBCommand()
 

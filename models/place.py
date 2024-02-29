@@ -17,6 +17,7 @@ place_amenity = Table('place_amenity', Base.metadata,
                       )
 
 class Place(BaseModel, Base):
+
     """Represent a place."""
 
     __tablename__ = 'places'
