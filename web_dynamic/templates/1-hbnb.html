@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dynamic HBNB</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts/1-hbnb.js') }}?cache_id={{ cache_id }}"></script>
+</head>
+<body>
+    <ul id="amenities">
+        <li><input type="checkbox" data-id="1" data-name="WiFi"> WiFi</li>
+        <li><input type="checkbox" data-id="2" data-name="TV"> TV</li>
+        <!-- Other amenities -->
+    </ul>
+    <div id="selected-amenities">
+        <h4>Selected Amenities:</h4>
+        <p>No amenities selected</p>
+    </div>
+</body>
+</html>
